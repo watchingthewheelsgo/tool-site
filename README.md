@@ -1,17 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a tool collections project build upon [Next.js](https://nextjs.org/) and [NextUI](https://nextui.org/)
 
 ## Getting Started
 
-First, run the development server:
+The project dependency was managed by `yarn`, please install yarn before development
+
+Run develop,
 
 ```bash
-npm run dev
-# or
+yarn install
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
