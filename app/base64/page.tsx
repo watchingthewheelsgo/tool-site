@@ -16,11 +16,11 @@ const page = () => {
   const modeOptions = ["Encode", "Decode"]
   return (
     <section>
-      <div className='px-2 md:px-4'>
+      <div className='px-2 md:px-4 flex flex-col'>
         <Title name={name} desc={description} />
         <Divider />
-        <div className='w-full items-start flex space-x-4'>
-          <label className='capitalize mt-5'>Options</label>
+        <div className='w-full items-start flex space-x-4 md:space-x-6'>
+          <label className='capitalize mt-5 md:text-xl font-semibold'>Options</label>
           <Divider orientation="vertical" />
           <Select
             disallowEmptySelection
@@ -39,17 +39,17 @@ const page = () => {
           </Select>
         </div>
         <Divider />
-        <div className='mt-4 grid grid-cols-4 gap-6 '>
-          <label className='col-span-2'>
+        <div className='mt-4 grid grid-cols-4 md:gap-6 gap-4 '>
+          <label className='col-span-2 font-bold md:text-xl '>
             Input
           </label>
-          <label className='col-span-2'>
+          <label className='col-span-2 font-bold md:text-xl'>
             Output
           </label>
         </div>
         <div className='grid grid-cols-4 grid-rows-4 md:gap-6 gap-4'>
           <Textarea
-            className='col-span-2 row-span-2'
+            className='col-span-2 row-span-4'
             variant="bordered"
             label=""
             placeholder="Type (or paste) here"
@@ -58,12 +58,15 @@ const page = () => {
           />
           <Textarea
             readOnly
-            className='col-span-2 row-span-2'
+            className='col-span-2 row-span-4'
             variant="bordered"
             label=""
             placeholder="Find result here"
             value={base64(modeValue, inputValue)}
           />
+        </div>
+        <div className=''>
+          About
         </div>
       </div>
     </section>
@@ -72,7 +75,6 @@ const page = () => {
 
 function base64(mode: Selection, value: string) {
   const tmp = mode as Set<string>
-  console.log(tmp, tmp.entries)
   if (tmp.has('Decode')) {
     return Buffer.from(value, "base64").toString()
   } 

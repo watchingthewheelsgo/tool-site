@@ -37,7 +37,7 @@ const ToolSection = ({ name }: { name: String }) => {
               </CardBody>
               <CardFooter className="text-lg justify-between">
                 <b>{item.title}</b>
-                <p className="text-default-500">{item.category}</p>
+                <p className="text-default-500 hidden md:flex">{item.category}</p>
               </CardFooter>
             </Card>
           </Tooltip>
