@@ -3,8 +3,17 @@ import React from 'react'
 import { Title } from '../components/Tool/Title'
 import { Card, CardBody, Slider, SliderValue, Switch, Textarea } from '@nextui-org/react'
 import { shuffleString } from '@/utils/random';
+import { toolCollection } from '../components/meta';
 
-const page = () => {
+const Page = () => {
+  const toolMeta = toolCollection.crypto.findLast((t) => t.key === 'token')
+  if (toolMeta === undefined) {
+    return (
+      <div>
+        Will support soon...
+      </div>
+    )
+  }
   const [uppercaseS, setUppercaseS] = React.useState(true);
   const [lowercaseS, setLowercaseS] = React.useState(true);
   const [numerS, setNumberS] = React.useState(true);
@@ -13,7 +22,7 @@ const page = () => {
   return (
     <div className='sm:w-[600px] items-center justify-center'>
       <div className='flex flex-col'>
-        <Title name={"Token Generater"} desc={"Generate random string with the chars you want, uppercase or lowercase letters, numbers and/or symbols."} />
+        <Title name={toolMeta.title} desc={toolMeta.desc} />
         <Card className='mt-10'>
           <CardBody className='py-4 '>
             <div className='grid grid-cols-2 grid-rows-2 gap-2 justify-center'>
@@ -79,7 +88,7 @@ const page = () => {
   )
 }
 
-export function createToken({
+function createToken({
   withUppercase,
   withLowercase,
   withNumbers,
@@ -104,4 +113,4 @@ export function createToken({
   return shuffleString(allAlphabet.repeat(length)).substring(0, length);
 }
 
-export default page
+export default Page

@@ -3,8 +3,17 @@ import React from 'react'
 import { Title } from '../components/Tool/Title'
 import { Card, CardBody, Divider, Input, Radio, RadioGroup, Slider, SliderValue, Textarea } from '@nextui-org/react'
 import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, NIL as nilUuid } from 'uuid'
+import { toolCollection } from '../components/meta'
 
-const page = () => {
+const Page = () => {
+  const toolMeta = toolCollection.crypto.findLast((t) => t.key === 'ulid')
+  if (toolMeta === undefined) {
+    return (
+      <div>
+        Will support soon...
+      </div>
+    )
+  }
   const [tokenLength, setTokenLength] = React.useState<SliderValue>(5);
   const [versionRadio, setVersionRadio] = React.useState("v3");
   const [namespaceRadio, setNamespaceRadio] = React.useState("dns");
@@ -16,11 +25,10 @@ const page = () => {
     return validateUUID(namespaceValue) ? false : true;
   }, [namespaceValue]);
 
-
   return (
     <div className='sm:w-[600px] items-center justify-center'>
       <div className='flex flex-col'>
-        <Title name={"UUID Generater"} desc={"A Universally Unique Identifier (UUID) is a 128-bit number used to identify information in computer systems. The number of possible UUIDs is 16^32, which is 2^128 or about 3.4x10^38 (which is a lot!)."} />
+        <Title name={toolMeta.title} desc={toolMeta.desc} />
         <Card className='mt-10'>
           <CardBody className='py-4 '>
             <div className=''>
@@ -167,4 +175,4 @@ function generate(version: string, count: number, namespace: string, name: strin
 
 }
 
-export default page
+export default Page

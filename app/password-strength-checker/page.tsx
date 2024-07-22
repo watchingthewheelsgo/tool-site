@@ -5,8 +5,17 @@ import _ from 'lodash'
 import { Title } from '../components/Tool/Title';
 import { Card, CardBody, Divider, Input, Radio, RadioGroup, Slider, SliderValue, Switch, Textarea } from '@nextui-org/react';
 import { EyeFilledIcon, EyeSlashFilledIcon } from '../components/icons';
+import { toolCollection } from '../components/meta';
 
-const page = () => {
+const Page = () => {
+  const toolMeta = toolCollection.crypto.findLast((t) => t.key === 'passwd')
+  if (toolMeta === undefined) {
+    return (
+      <div>
+        Will support soon...
+      </div>
+    )
+  }
   const [passwdValue, setPasswdValue] = React.useState("");
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -35,7 +44,7 @@ const page = () => {
   return (
     <div className='sm:w-[600px] items-center justify-center'>
       <div className='flex flex-col'>
-        <Title name={"Password Strength Checker"} desc={"Discover the strength of your password with this client-side-only password strength analyser and crack time estimation tool."} />
+        <Title name={toolMeta.title} desc={toolMeta.desc} />
         <Card className='mt-10'>
           <CardBody className='py-4 '>
             <Input
@@ -62,28 +71,28 @@ const page = () => {
             <Divider orientation='horizontal' className='my-2' />
 
             <div className="grid grid-rows-4 gap-2 grid-cols-4 h-40 rounded-lg bg-default-200">
-              <div className='row-span-1 col-span-1 items-center justify-items-end  col-start-2 '>
-                Password Length
+              <div className='row-span-1 col-span-1 self-center justify-self-end  col-start-2 '>
+                Password Length:
               </div>
-              <div className='col-span-2'>
+              <div className='col-span-2 self-center pl-2'>
                 {crackTimeEstimation().passwordLength}
               </div>
-              <div className='row-span-1 col-span-1  items-center justify-end col-start-2'>
-                Entropy
+              <div className='row-span-1 col-span-1  self-center justify-self-end col-start-2'>
+                Entropy:
               </div>
-              <div className='col-span-2'>
+              <div className='col-span-2 self-center pl-2'>
                 {Math.round(crackTimeEstimation().entropy * 100) / 100}
               </div>
-              <div className='row-span-1 col-span-1 items-center col-start-2  right-0'>
-                Character set size
+              <div className='row-span-1 col-span-1 self-center col-start-2 justify-self-end '>
+                Character set size:
               </div>
-              <div className='col-span-2'>
+              <div className='col-span-2 self-center pl-2'>
                 {crackTimeEstimation().charsetLength}
               </div>
-              <div className='row-span-1 col-span-1 items-center col-start-2'>
-                Score
+              <div className='row-span-1 col-span-1 self-center justify-self-end col-start-2'>
+                Score:
               </div>
-              <div className='col-span-2'>
+              <div className='col-span-2 self-center pl-2'>
                 {Math.round(crackTimeEstimation().score * 100)} / 100
               </div>
 
@@ -203,4 +212,4 @@ function prettifyExponentialNotation(exponentialNotation: number) {
   return exponent ? `${prettyBase}e${exponent}` : prettyBase;
 }
 
-export default page
+export default Page

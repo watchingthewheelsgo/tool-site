@@ -4,14 +4,23 @@ import { ulid } from 'ulid'
 import _ from 'lodash'
 import { Title } from '../components/Tool/Title';
 import { Card, CardBody, Divider, Radio, RadioGroup, Slider, SliderValue, Switch, Textarea } from '@nextui-org/react';
+import { toolCollection } from '../components/meta';
 
-const page = () => {
+const Page = () => {
+  const toolMeta = toolCollection.crypto.findLast((t) => t.key === 'ulid')
+  if (toolMeta === undefined) {
+    return (
+      <div>
+        Will support soon...
+      </div>
+    )
+  }
   const [outputNumber, setOutputNumber] = React.useState<SliderValue>(5);
   const [versionRadio, setVersionRadio] = React.useState("raw");
   return (
     <div className='sm:w-[600px] items-center justify-center'>
       <div className='flex flex-col'>
-        <Title name={"ULID Generater"} desc={"Generate random Universally Unique Lexicographically Sortable Identifier (ULID)."} />
+        <Title name={toolMeta.title} desc={toolMeta.desc} />
         <Card className='mt-10'>
           <CardBody className='py-4 '>
             <Slider
@@ -65,4 +74,4 @@ function generateUlid(n: number, format: string) {
   return ids.join('\n');
 }
 
-export default page
+export default Page

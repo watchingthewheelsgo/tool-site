@@ -4,7 +4,7 @@ import React from 'react'
 import { Title } from '../components/Tool/Title'
 import { Card, CardBody, Divider, Select, SelectItem, Tab, Tabs, Selection } from '@nextui-org/react'
 
-const page = () => {
+const Page = () => {
   const name: string = "Timestamp Converter"
   const desc: string = "abc"
   const [tabSelected, setTabSelected] = React.useState("photos");
@@ -83,4 +83,4 @@ function timestamp(value: string, tz: Selection, tu: Selection) {
 
 }
 
-export default page
+export default Page
