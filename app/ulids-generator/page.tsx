@@ -52,7 +52,7 @@ const Page = () => {
               readOnly
               classNames={{
                 inputWrapper: "h-full font-normal text-default-500",
-                input: 'focus:outline-none border-transparent focus:border-transparent focus:ring-0'
+                input: 'min-h-[240px] focus:outline-none border-transparent focus:border-transparent focus:ring-0'
               }}
               size='md'
               variant='faded'
